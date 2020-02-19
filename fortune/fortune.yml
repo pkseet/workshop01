@@ -1,0 +1,32 @@
+# Mandatory definitions
+# apiVersion: core/v1
+# same as
+apiVersion: v1
+kind: Pod
+metadata: 
+     name: fortune-pod
+     namespace: default
+     labels:
+        name: fortune-app
+        tier: web
+        version: "v1"
+
+# Optionals
+
+spec:
+    containers:
+        - name: fortune-container
+          image: stackupiss/fortune:v1
+          imagePullPolicy: Always
+          env:
+            - name: APP_PORT
+              value: "8080"
+          ports:
+            - name: http
+              containerPort: 3000
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "64Mi"
+
+
